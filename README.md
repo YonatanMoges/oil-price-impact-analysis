@@ -39,9 +39,8 @@ project-root/
 │       └── src/
 │           ├── App.js              # React main component
 │           ├── index.js            # React entry point
-│           ├── pages/
+│           ├── components/
 │           │   └── Dashboard.js    # Dashboard component
-│           └── components/         # Reusable React components
 ├──requirements.txt                # Dependencies
 └── README.md                       # Project documentation
 ```
