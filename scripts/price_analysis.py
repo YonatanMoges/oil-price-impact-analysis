@@ -123,3 +123,16 @@ class PriceAnalysis:
             self.train_var_model()
         else:
             print("Economic data not available, skipping VAR model.")
+
+    def save_data_to_csv(self):
+        # Save the preprocessed oil data to a CSV
+        self.oil_data.to_csv('../data/Preprocessed_BrentOilPrices.csv', index=True)
+        
+        # Save the fetched economic data if available
+        if self.economic_data is not None:
+            self.economic_data.to_csv('../data/Economic_Data.csv', index=True)
+        
+        # Save the combined data if available
+        if hasattr(self, 'data'):
+            self.data.to_csv('../data/Combined_Data.csv', index=True)
+
