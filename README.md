@@ -14,7 +14,6 @@ This project analyzes Brent oil prices and builds an interactive dashboard to vi
   - [Starting the Backend](#starting-the-backend)
   - [Starting the Frontend](#starting-the-frontend)
 - [Technologies Used](#technologies-used)
-- [Contributing](#contributing)
 
 ## Project Structure
 The project directory is organized as follows:
