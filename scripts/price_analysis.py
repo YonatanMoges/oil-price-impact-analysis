@@ -32,23 +32,38 @@ class PriceAnalysis:
         else:
             self.data = self.oil_data
     
-    def fetch_economic_data(self, start_year=2010, end_year=2022):
+   
+
+    def fetch_economic_data(self, start_year, end_year):
         indicators = {
-            "NY.GDP.MKTP.KD.ZG": "GDP Growth (annual %)",
-            "FP.CPI.TOTL.ZG": "Inflation, consumer prices (annual %)"
+            'NY.GDP.MKTP.CD': 'GDP',
+            'FP.CPI.TOTL': 'Inflation',
+            'SL.UEM.TOTL.ZS': 'Unemployment',
+            'PA.NUS.FCRF': 'Exchange Rate'
         }
-        start_date = datetime.datetime(start_year, 1, 1)
-        end_date = datetime.datetime(end_year, 1, 1)
         
-        # Fetch data
+        start_date = f"{start_year}-01-01"
+        end_date = f"{end_year}-12-31"
+        
         data_frames = []
         for country in self.countries:
-            country_data = wbdata.get_dataframe(indicators, country=country, data_date=(start_date, end_date), convert_date=True)
+            country_data = wbdata.get_dataframe(indicators, country=country)
+            
+            # Convert the index to datetime and filter by date range
+            country_data.index = pd.to_datetime(country_data.index)
+            country_data = country_data[(country_data.index >= start_date) & (country_data.index <= end_date)]
+            
             data_frames.append(country_data)
         
-        # Merge data if multiple countries selected
-        self.economic_data = pd.concat(data_frames, axis=1)
-        print("Economic data fetched successfully.")
+        # Combine all countries' data into one DataFrame
+        if data_frames:
+            combined_data = pd.concat(data_frames)
+            combined_data.sort_index(inplace=True)
+            return combined_data
+        else:
+            print("No data retrieved.")
+            return None
+
         
     def exploratory_data_analysis(self):
         # Plot oil prices
