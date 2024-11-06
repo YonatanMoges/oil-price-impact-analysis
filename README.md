@@ -41,7 +41,7 @@ project-root/
 │           ├── index.js            # React entry point
 │           ├── components/
 │           │   └── Dashboard.js    # Dashboard component
-├──requirements.txt                # Dependencies
+├──requirements.txt                 # Dependencies
 └── README.md                       # Project documentation
 ```
 ## Setup
@@ -55,24 +55,17 @@ World Bank API Access for fetching economic data
 Clone the repository
 
 ```bash
-git clone <repository-url>
-cd project-root
+git clone https://github.com/YonatanMoges/oil-price-impact-analysis.git
+cd oil-price-impact-analysis
 ```
 
-Setup Virtual Environment for Backend (Flask)
+Setup Virtual Environment
 ``` bash
 python -m venv myenv
-source myenv/bin/activate   # On Windows: myenv\Scripts\activate
-cd src/api
+myenv\Scripts\activate  # On Windows: 
+
 # Install dependencies
 pip install -r requirements.txt
-```
-
-Install Frontend Dependencies (React)
-
-```bash
-cd ../frontend
-npm install
 ```
 
 ## Tasks
@@ -119,6 +112,13 @@ python app.py
 ```
 **Frontend (React)
 React Application Setup**
+
+Install Frontend Dependencies (React)
+
+```bash
+cd ../frontend
+npm install
+```
 
 `Dashboard.js` in src/compnents fetches and displays data from the Flask API.  
 
